@@ -1,7 +1,9 @@
-import React from "react"
-import { Flex, Text, Input, Button, Divider, InputGroup, InputLeftElement, Icon } from "@chakra-ui/react"
+import React, { useState } from 'react';
+import { Flex, Text, Input, Button, Divider, InputGroup, InputLeftElement, Icon, Link } from "@chakra-ui/react"
 import { PhoneIcon } from '@chakra-ui/icons'
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
+import {Link as RLink} from "react-router-dom"
+
 const commonStyle = {
     width: "100%",
     margin: "10px 0"
@@ -15,7 +17,18 @@ const blackButtonStyle = {
         
     }
 }
-export const Login = ():JSX.Element => (
+export const Login = ():JSX.Element => {
+    const handleSignIn = ():void => {
+        if(!phone) {
+            alert('Phone number can"t be empty')
+        }
+        else {
+            alert(phone)
+        }
+    }
+    
+    const [phone, setPhone] = useState<string>("");
+    return (
     <Flex direction="column" width="100%" padding="50px" justifyContent="center" alignItems="center">
         <Text fontSize="4xl" align="left" width="100%" as="strong">Log In</Text>
     <InputGroup {...commonStyle}>
@@ -24,15 +37,17 @@ export const Login = ():JSX.Element => (
           children={<PhoneIcon color="gray.500" />}
           height="100%"
         />
-        <Input type="tel" placeholder="Phone number" paddingTop="30px" paddingBottom="30px" fontSize="2xl" borderRadius="0" borderColor="black"/> 
+        <Input type="tel" placeholder="Phone number" paddingTop="30px" paddingBottom="30px" fontSize="2xl" borderRadius="0" borderColor="black" onChange={(e) => setPhone(e.target.value)}/> 
     </InputGroup>
 
-    <Button {...commonStyle} size="lg" {...blackButtonStyle}  padding="30px 0"><Text fontSize="2xl">Sign In</Text></Button>
+    <Button {...commonStyle} size="lg" {...blackButtonStyle}  padding="30px 0" onClick={handleSignIn}>
+        <Text fontSize="2xl">Sign In</Text>
+    </Button>
     <Flex margin="20px 0">
         <Text>Or</Text>
     </Flex>
-    <Button {...commonStyle} variant="outline" borderColor="black" borderRadius="0"  padding="25px 0"><Text fontSize="xl">Sign in with password</Text></Button>
-    <Text as="strong">Don't Have an account? Signup</Text>
+    <Button {...commonStyle} variant="outline" borderColor="black" borderRadius="0"  padding="25px 0"><Text fontSize="xl" as={RLink} to="/login_with_password">Sign in with password</Text></Button>
+    <Text as="strong">Don't Have an account? <Link to="/signup" as={RLink}>Signup</Link></Text>
     <Flex marginTop="20px">
         <Text>Or</Text>
     </Flex>
@@ -41,6 +56,6 @@ export const Login = ():JSX.Element => (
         <Button colorScheme="red" borderRadius="0" leftIcon={<Icon as={FaGoogle} />} {...commonStyle} padding="25px 0">Sign in with Google</Button>
     </Flex>
     </Flex>
-)
+)}
 
 export default Login;
