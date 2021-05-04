@@ -85,12 +85,12 @@ export const LoginPassword = ():JSX.Element => {
 
     
     <Button {...commonStyle} size="lg" {...blackButtonStyle}  padding="30px 0" onClick={handleSignIn}>
-        <Text fontSize="2xl">Sign In</Text>
+        <Text fontSize="2xl">Sign in with Password </Text>
     </Button>
     <Flex margin="20px 0">
         <Text>Or</Text>
     </Flex>
-    <Button {...commonStyle} variant="outline" borderColor="black" borderRadius="0"  padding="25px 0"><Text fontSize="xl" as={RLink} to="/login_with_password">Sign in with password</Text></Button>
+    <Button {...commonStyle} variant="outline" borderColor="black" borderRadius="0"  padding="25px 0"><Text fontSize="xl" as={RLink} to="/login">Forgot Password? Sign in via other means instead!</Text></Button>
     <Text as="strong">Don't Have an account? <Link to="/signup" as={RLink}>Signup</Link></Text>
     <Flex marginTop="20px">
         <Text>Or</Text>
