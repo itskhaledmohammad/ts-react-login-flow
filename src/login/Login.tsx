@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Flex, Text, Input, Button, Divider, InputGroup, InputLeftElement, Icon, Link } from "@chakra-ui/react"
+import { Flex, Text, Input, Button, InputGroup, InputLeftElement, Icon, Link, useToast} from "@chakra-ui/react"
 import { PhoneIcon } from '@chakra-ui/icons'
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
-import {Link as RLink} from "react-router-dom"
+import {Link as RLink, useHistory} from "react-router-dom"
 
 const commonStyle = {
     width: "100%",
@@ -18,12 +18,23 @@ const blackButtonStyle = {
     }
 }
 export const Login = ():JSX.Element => {
+    const history = useHistory()
+    const toast = useToast()
+
     const handleSignIn = ():void => {
         if(!phone) {
-            alert('Phone number can"t be empty')
+            toast({
+                title: "Validation Unsuccessful",
+                description: "Phone number can't be empty",
+                status: "error",
+                duration: 1000,
+                isClosable: true,
+                position: "top"
+              })            
+              return
         }
         else {
-            alert(phone)
+            history.push('/otp/sms')
         }
     }
     

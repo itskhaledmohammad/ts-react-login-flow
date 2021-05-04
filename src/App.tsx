@@ -17,8 +17,6 @@ import OTPEmail from './otp_email/OTPEmail';
 import OTPSms from './otp_sms/OTPSms';
 import Signup from './signup/Signup';
 
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-
 export const App = ():JSX.Element => (
   <ChakraProvider theme={theme}>
     <Flex width="100vw" height="100vh" direction="column" justifyContent="center" alignItems="center">
