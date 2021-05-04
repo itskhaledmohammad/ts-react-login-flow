@@ -3,16 +3,19 @@ import {
   ChakraProvider,
   Box,
   theme,
-  Text
 } from "@chakra-ui/react"
-import ReactDOM from "react-dom" 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useParams
+  Redirect,
 } from "react-router-dom";
 
+import Login from './login/Login';
+import LoginPassword from './login_password/LoginPassword';
+import OTPEmail from './otp_email/OTPEmail';
+import OTPSms from './otp_sms/OTPSms';
+import Signup from './signup/Signup';
 
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 
@@ -23,17 +26,24 @@ export const App = ():JSX.Element => (
       <Router>
         <Switch>
           <Route exact path="/">
-            <Text>Home Page</Text>
+            <Redirect to="/login_with_password"></Redirect>
+          </Route>
+          <Route exact path="/login_with_password">
+            <LoginPassword/>
           </Route>
           <Route exact path="/login">
-            <Text>Login Page</Text>
+            <Login/>
           </Route>
           <Route exact path="/signup">
-            <Text>Signup</Text>
+            <Signup />
           </Route>
-          <Route exact path="/otp">
-            <Text>OTP</Text>
+          <Route exact path="/otp/email">
+            <OTPEmail />
           </Route>
+          <Route exact path="/otp/sms">
+            <OTPSms />
+          </Route>
+
         </Switch>
       </Router>
     </Box>
