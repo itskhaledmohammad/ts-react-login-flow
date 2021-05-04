@@ -21,7 +21,8 @@ export const LoginPassword = ():JSX.Element => {
     const history = useHistory()
     const toast = useToast()
     const [phone, setPhone] = useState<string>("");
-    const [show, setShow] = React.useState(false)
+    const [show, setShow] = useState<boolean>(false)
+    const [password, setPassword] = useState<string>("")
     const handlePasswordShow = () => setShow(!show)
 
     const handleSignIn = ():void => {
@@ -35,6 +36,15 @@ export const LoginPassword = ():JSX.Element => {
                 position: "top"
               })            
               return
+        } else if(!password) {
+            toast({
+                title: "Validation Unsuccessful",
+                description: "Password can't be empty",
+                status: "error",
+                duration: 1000,
+                isClosable: true,
+                position: "top"
+              })  
         }
         else {
             history.push('/otp/sms')
@@ -64,6 +74,7 @@ export const LoginPassword = ():JSX.Element => {
         type={show ? "text" : "password"}
         placeholder="Enter password"
         paddingTop="30px" paddingBottom="30px" fontSize="2xl" borderRadius="0" borderColor="black" 
+        onChange={(e) => setPassword(e.target.value)}
       />
       <InputRightElement width="4.5rem" height="100%">
         <Button  size="lg" onClick={handlePasswordShow} backgroundColor="transparent" _hover={{backgroundColor: "transparent"}} >
