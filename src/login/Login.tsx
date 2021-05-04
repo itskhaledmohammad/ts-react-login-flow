@@ -3,7 +3,6 @@ import { Flex, Text, Input, Button, InputGroup, InputLeftElement, Icon, Link, us
 import { PhoneIcon } from '@chakra-ui/icons'
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import {Link as RLink, useHistory} from "react-router-dom"
-
 const commonStyle = {
     width: "100%",
     margin: "10px 0"
