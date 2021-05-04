@@ -2,25 +2,40 @@ import * as React from "react"
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
   theme,
+  Text
 } from "@chakra-ui/react"
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-import { Logo } from "./Logo"
+import ReactDOM from "react-dom" 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams
+} from "react-router-dom";
 
-export const App = () => (
+
+import { ColorModeSwitcher } from "./ColorModeSwitcher"
+
+export const App = ():JSX.Element => (
   <ChakraProvider theme={theme}>
     <Box textAlign="center" fontSize="xl">
-      <Grid minH="100vh" p={3}>
-        <ColorModeSwitcher justifySelf="flex-end" />
-        <VStack spacing={8}>
-          <Text>Hello World</Text>
-        </VStack>
-      </Grid>
+      <ColorModeSwitcher></ColorModeSwitcher>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Text>Home Page</Text>
+          </Route>
+          <Route exact path="/login">
+            <Text>Login Page</Text>
+          </Route>
+          <Route exact path="/signup">
+            <Text>Signup</Text>
+          </Route>
+          <Route exact path="/otp">
+            <Text>OTP</Text>
+          </Route>
+        </Switch>
+      </Router>
     </Box>
   </ChakraProvider>
 )
