@@ -1,7 +1,7 @@
 import * as React from "react"
 import {
   ChakraProvider,
-  Box,
+  Flex,
   theme,
 } from "@chakra-ui/react"
 import {
@@ -17,16 +17,13 @@ import OTPEmail from './otp_email/OTPEmail';
 import OTPSms from './otp_sms/OTPSms';
 import Signup from './signup/Signup';
 
-import { ColorModeSwitcher } from "./ColorModeSwitcher"
-
 export const App = ():JSX.Element => (
   <ChakraProvider theme={theme}>
-    <Box textAlign="center" fontSize="xl">
-      <ColorModeSwitcher></ColorModeSwitcher>
+    <Flex width="100vw" height="100vh" direction="column" justifyContent="center" alignItems="center">
       <Router>
         <Switch>
           <Route exact path="/">
-            <Redirect to="/login_with_password"></Redirect>
+            <Redirect to="/login"></Redirect>
           </Route>
           <Route exact path="/login_with_password">
             <LoginPassword/>
@@ -46,6 +43,6 @@ export const App = ():JSX.Element => (
 
         </Switch>
       </Router>
-    </Box>
+    </Flex>
   </ChakraProvider>
 )
