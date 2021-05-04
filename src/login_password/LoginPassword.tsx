@@ -21,7 +21,8 @@ export const LoginPassword = ():JSX.Element => {
     const history = useHistory()
     const toast = useToast()
     const [phone, setPhone] = useState<string>("");
-    const [show, setShow] = React.useState(false)
+    const [show, setShow] = useState<boolean>(false)
+    const [password, setPassword] = useState<string>("")
     const handlePasswordShow = () => setShow(!show)
 
     const handleSignIn = ():void => {
@@ -35,6 +36,15 @@ export const LoginPassword = ():JSX.Element => {
                 position: "top"
               })            
               return
+        } else if(!password) {
+            toast({
+                title: "Validation Unsuccessful",
+                description: "Password can't be empty",
+                status: "error",
+                duration: 1000,
+                isClosable: true,
+                position: "top"
+              })  
         }
         else {
             history.push('/otp/sms')
@@ -64,6 +74,7 @@ export const LoginPassword = ():JSX.Element => {
         type={show ? "text" : "password"}
         placeholder="Enter password"
         paddingTop="30px" paddingBottom="30px" fontSize="2xl" borderRadius="0" borderColor="black" 
+        onChange={(e) => setPassword(e.target.value)}
       />
       <InputRightElement width="4.5rem" height="100%">
         <Button  size="lg" onClick={handlePasswordShow} backgroundColor="transparent" _hover={{backgroundColor: "transparent"}} >
@@ -74,12 +85,12 @@ export const LoginPassword = ():JSX.Element => {
 
     
     <Button {...commonStyle} size="lg" {...blackButtonStyle}  padding="30px 0" onClick={handleSignIn}>
-        <Text fontSize="2xl">Sign In</Text>
+        <Text fontSize="2xl">Sign in with Password </Text>
     </Button>
     <Flex margin="20px 0">
         <Text>Or</Text>
     </Flex>
-    <Button {...commonStyle} variant="outline" borderColor="black" borderRadius="0"  padding="25px 0"><Text fontSize="xl" as={RLink} to="/login_with_password">Sign in with password</Text></Button>
+    <Button {...commonStyle} variant="outline" borderColor="black" borderRadius="0"  padding="25px 0"><Text fontSize="xl" as={RLink} to="/login">Forgot Password? Sign in via other means instead!</Text></Button>
     <Text as="strong">Don't Have an account? <Link to="/signup" as={RLink}>Signup</Link></Text>
     <Flex marginTop="20px">
         <Text>Or</Text>
