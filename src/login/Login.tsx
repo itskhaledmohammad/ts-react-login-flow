@@ -1,10 +1,3 @@
-<<<<<<< Updated upstream
-import React from "react"
-import {Text} from "@chakra-ui/react"
-export const Login = ():JSX.Element => (
-    <Text>Login Page</Text>
-)
-=======
 import React, { useState } from 'react';
 import { Flex, Text, Input, Button, InputGroup, InputLeftElement, Icon, Link, useToast} from "@chakra-ui/react"
 import { PhoneIcon } from '@chakra-ui/icons'
@@ -75,6 +68,4 @@ export const Login = ():JSX.Element => {
     </Flex>
     </Flex>
 )}
->>>>>>> Stashed changes
-
 export default Login;

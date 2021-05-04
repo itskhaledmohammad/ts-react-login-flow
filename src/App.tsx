@@ -22,7 +22,6 @@ import { ColorModeSwitcher } from "./ColorModeSwitcher"
 export const App = ():JSX.Element => (
   <ChakraProvider theme={theme}>
     <Box textAlign="center" fontSize="xl">
-      <ColorModeSwitcher></ColorModeSwitcher>
       <Router>
         <Switch>
           <Route exact path="/">
