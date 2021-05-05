@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState } from "react"
 import {
   ChakraProvider,
   Flex,
@@ -18,14 +18,18 @@ import OTPSms from './otp_sms/OTPSms';
 import Signup from './signup/Signup';
 import LoadingPage from "./common/LoadingPage";
 
-export const App = ():JSX.Element => (
+export const App = ():JSX.Element => {
+  const [loading, setLoading] = useState<boolean>(false);
+  return (
   <ChakraProvider theme={theme}>
     <Flex width="100vw" height="100vh" direction="column" justifyContent="center" alignItems="center">
-      <Router>
+      {(loading) ? 
+      <LoadingPage />
+      :
+      (<Router>
         <Switch>
           <Route exact path="/">
-            {/* <Redirect to="/login"></Redirect> */}
-            <LoadingPage />
+            <Redirect to="/login"></Redirect>
           </Route>
           <Route exact path="/login_with_password">
             <LoginPassword/>
@@ -44,7 +48,9 @@ export const App = ():JSX.Element => (
           </Route>
 
         </Switch>
-      </Router>
+      </Router>)
+    }
     </Flex>
   </ChakraProvider>
 )
+}
