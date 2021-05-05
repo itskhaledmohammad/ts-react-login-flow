@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Flex, Text, Input, Button, InputGroup, InputLeftElement, InputRightElement, Icon, Link, useToast} from "@chakra-ui/react"
 import { PhoneIcon } from '@chakra-ui/icons'
 import { FaFacebookF, FaGoogle, FaEye, FaEyeSlash, FaKey } from 'react-icons/fa';
 import {Link as RLink, useHistory} from "react-router-dom"
+import { LoadingContext } from "../App"
+import axiosInstance from "../utils/axiosInstance"
+import { AxiosResponse } from 'axios';
 
 const commonStyle = {
     width: "100%",
@@ -18,12 +21,12 @@ const blackButtonStyle = {
     }
 }
 export const LoginPassword: React.FC = ():JSX.Element => {
-    const history = useHistory()
     const toast = useToast()
     const [phone, setPhone] = useState<string>("");
     const [show, setShow] = useState<boolean>(false)
     const [password, setPassword] = useState<string>("")
     const handlePasswordShow = () => setShow(!show)
+    const setLoading = useContext(LoadingContext)
 
     const handleSignIn = ():void => {
         if(!phone) {
@@ -34,7 +37,8 @@ export const LoginPassword: React.FC = ():JSX.Element => {
                 duration: 1000,
                 isClosable: true,
                 position: "top"
-              })            
+              })  
+              return          
         } else if(!password) {
             toast({
                 title: "Validation Unsuccessful",
@@ -44,10 +48,35 @@ export const LoginPassword: React.FC = ():JSX.Element => {
                 isClosable: true,
                 position: "top"
               })  
+              return
         }
-        else {
-            history.push('/otp/sms')
-        }
+
+        setLoading(true)
+        axiosInstance.post('/login', { phone, password })
+        .then((response:AxiosResponse) => {
+            if(response.status === 200) {
+                toast({
+                    title: "Login Successful",
+                    description: "Welcome the login was successful.",
+                    status: "success",
+                    duration: 2000,
+                    isClosable: true,
+                    position: "top"
+                  })
+            }
+            setLoading(false);
+        })
+        .catch(err => {
+            toast({
+                title: "Login Unsuccessful",
+                description: "Unfortunately the login was unsuccessful, try again.",
+                status: "error",
+                duration: 2000,
+                isClosable: true,
+                position: "top"
+              })
+              setLoading(false)
+        })
     }
     
     return (

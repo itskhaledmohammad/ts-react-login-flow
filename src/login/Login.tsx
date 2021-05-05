@@ -37,7 +37,7 @@ export const Login: React.FC = ():JSX.Element => {
               })            
               return
         }
-
+        
         setLoading(true);
         axiosInstance.get('/otp')
         .then(({data}) => {
