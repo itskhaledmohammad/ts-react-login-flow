@@ -18,10 +18,13 @@ import OTPSms from './otp_sms/OTPSms';
 import Signup from './signup/Signup';
 import LoadingPage from "./common/LoadingPage";
 
-export const App = ():JSX.Element => {
+export const LoadingContext = React.createContext<(boolean | React.Dispatch<React.SetStateAction<boolean>>)[] | null>(null);
+
+export const App: React.FC = ():JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false);
   return (
   <ChakraProvider theme={theme}>
+    <LoadingContext.Provider value={[loading, setLoading]}>
     <Flex width="100vw" height="100vh" direction="column" justifyContent="center" alignItems="center">
       {(loading) ? 
       <LoadingPage />
@@ -51,6 +54,7 @@ export const App = ():JSX.Element => {
       </Router>)
     }
     </Flex>
+    </LoadingContext.Provider>
   </ChakraProvider>
 )
 }
