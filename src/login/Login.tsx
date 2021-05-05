@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { Flex, Text, Input, Button, InputGroup, InputLeftElement, Icon, Link, useToast} from "@chakra-ui/react"
 import { PhoneIcon } from '@chakra-ui/icons'
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
-import {Link as RLink, useHistory} from "react-router-dom"
+import {Link as RLink, useHistory} from "react-router-dom";
+import axiosInstance from "../utils/axiosInstance"
+import { AxiosResponse } from 'axios';
+
 const commonStyle = {
     width: "100%",
     margin: "10px 0"
@@ -33,9 +36,26 @@ export const Login = ():JSX.Element => {
               })            
               return
         }
-        else {
-            history.push('/otp/sms')
-        }
+
+        axiosInstance.get('/otp')
+        .then(({data}) => {
+            if(data.otp_medium_sms === 'true') {
+                history.push('/otp/sms')
+            } else {
+                history.push('/otp/email')
+            }
+        })
+        .catch(err => {
+            toast({
+                title: "Unexpected Error",
+                description: "Sorry there was a network error.",
+                status: "error",
+                duration: 1000,
+                isClosable: true,
+                position: "top"
+              })            
+        })
+                
     }
     
     return (
