@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Flex, Text, Input, Button, InputGroup, InputLeftElement, InputRightElement, Icon, Link, useToast} from "@chakra-ui/react"
 import { PhoneIcon } from '@chakra-ui/icons'
 import { FaFacebookF, FaGoogle, FaEye, FaEyeSlash, FaKey } from 'react-icons/fa';
-import {Link as RLink, useHistory} from "react-router-dom"
+import {Link as RLink} from "react-router-dom"
 import { LoadingContext } from "../App"
 import axiosInstance from "../utils/axiosInstance"
 import { AxiosResponse } from 'axios';

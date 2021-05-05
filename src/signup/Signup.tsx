@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Flex, Text, Button, Icon, useToast, Input, Link, InputGroup, InputLeftElement, InputRightElement} from "@chakra-ui/react";
 import { PhoneIcon } from '@chakra-ui/icons';
 import {Link as RLink} from "react-router-dom";
 import { FaEye, FaEyeSlash, FaKey, FaUserAlt, FaEnvelope, FaArrowAltCircleLeft } from 'react-icons/fa';
+import { LoadingContext } from "../App"
 
 const commonStyle = {
     width: "100%",
@@ -17,16 +18,16 @@ const blackButtonStyle = {
         
     }
 }
-export const Signup = ():JSX.Element => {
+export const Signup: React.FC = ():JSX.Element => {
     const toast = useToast()
     const [phone, setPhone] = useState<string>("");
     const [name, setName] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [show, setShow] = useState<boolean>(false)
-
-
     const handlePasswordShow = () => setShow(!show)
+    const setLoading = useContext(LoadingContext)
+
     const handleOTP = () => {
         if(!phone) {
             toast({
@@ -36,7 +37,8 @@ export const Signup = ():JSX.Element => {
                 duration: 1000,
                 isClosable: true,
                 position: "top"
-              })            
+            })            
+            return
         }
         else if(!name) {
             toast({
@@ -46,7 +48,8 @@ export const Signup = ():JSX.Element => {
                 duration: 1000,
                 isClosable: true,
                 position: "top"
-              })            
+              }) 
+              return           
         }
         else if(!password) {
             toast({
@@ -56,8 +59,21 @@ export const Signup = ():JSX.Element => {
                 duration: 1000,
                 isClosable: true,
                 position: "top"
-              })            
+              })  
+              return          
         }
+        setLoading(true)
+        setTimeout(() => {
+            toast({
+                title: "Signup Successful",
+                description: "Welcome! Signup was Successful.",
+                status: "success",
+                duration: 2000,
+                isClosable: true,
+                position: "top"
+            })       
+            setLoading(false)
+        }, 2000)
     }
     return (
     <Flex direction="column" width="100%" padding="50px" justifyContent="center" alignItems="center">
