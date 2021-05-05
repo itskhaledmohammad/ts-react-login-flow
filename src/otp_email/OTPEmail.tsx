@@ -19,7 +19,7 @@ const blackButtonStyle = {
         
     }
 }
-export const OTPEmail = ():JSX.Element => {
+export const OTPEmail: React.FC = ():JSX.Element => {
     const toast = useToast()
     const [otp, setOTP] = useState<number>(0);
     

@@ -18,7 +18,7 @@ const blackButtonStyle = {
         
     }
 }
-export const Login = ():JSX.Element => {
+export const Login: React.FC = ():JSX.Element => {
     const history = useHistory()
     const toast = useToast()
     const [phone, setPhone] = useState<string>("");
