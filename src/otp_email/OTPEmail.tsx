@@ -3,6 +3,8 @@ import { Flex, Text, Button, Icon, useToast, Input, Link} from "@chakra-ui/react
 import { PhoneIcon } from '@chakra-ui/icons';
 import { FaArrowAltCircleLeft, FaEnvelope } from 'react-icons/fa';
 import {Link as RLink} from "react-router-dom";
+import axiosInstance from "../utils/axiosInstance"
+import { AxiosResponse } from 'axios';
 
 const commonStyle = {
     width: "100%",
