@@ -64,7 +64,7 @@ export const OTPSms: React.FC = ():JSX.Element => {
         })
     }
     return (
-    <Flex direction="column" width="100%" padding="50px" justifyContent="center" alignItems="center">
+    <Flex direction="column" width="90%" justifyContent="center" alignItems="center">
         <Text fontSize="4xl" align="center" width="100%"><PhoneIcon /> OTP has been sent to your <Text as="strong">PHONE</Text></Text>
         <Input variant="flushed" textAlign="center" fontSize="3xl" placeholder="SMS OTP" {...commonStyle} marginTop="50px" onChange={(e) => setOTP(e.target.value)} />
         <Button {...commonStyle} size="lg" {...blackButtonStyle}  padding="30px 0" onClick={handleOTP}>

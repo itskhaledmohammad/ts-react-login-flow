@@ -85,7 +85,7 @@ export const Login: React.FC = ():JSX.Element => {
     }
     
     return (
-    <Flex direction="column" width="100%" padding="50px" justifyContent="center" alignItems="center">
+    <Flex direction="column" width="90%" justifyContent="center" alignItems="center">
         <Text fontSize="4xl" align="left" width="100%" as="strong">Log In</Text>
     <InputGroup {...commonStyle}>
         <InputLeftElement

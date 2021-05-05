@@ -64,7 +64,7 @@ export const OTPEmail: React.FC = ():JSX.Element => {
         })
     }
     return (
-    <Flex direction="column" width="100%" padding="50px" justifyContent="cent   er" alignItems="center">
+    <Flex direction="column" width="90%" justifyContent="cent   er" alignItems="center">
         <Text fontSize="4xl" align="center" width="100%"><Icon as={FaEnvelope} /> OTP has been sent to your <Text as="strong">EMAIL</Text></Text>
         <Input variant="flushed" textAlign="center" fontSize="3xl" placeholder="Email OTP" {...commonStyle} marginTop="50px" onChange={(e) => setOTP(parseInt(e.target.value))} />
         <Button {...commonStyle} size="lg" {...blackButtonStyle}  padding="30px 0" onClick={handleOTP}>

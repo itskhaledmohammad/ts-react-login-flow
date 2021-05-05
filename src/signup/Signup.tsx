@@ -76,7 +76,7 @@ export const Signup: React.FC = ():JSX.Element => {
         }, 2000)
     }
     return (
-    <Flex direction="column" width="100%" padding="50px" justifyContent="center" alignItems="center">
+    <Flex direction="column" width="90%" justifyContent="center" alignItems="center">
         <Text fontSize="4xl" align="left" width="100%" as="strong">Create a new account</Text>
         
         <InputGroup {...commonStyle}>
