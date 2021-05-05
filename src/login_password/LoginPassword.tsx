@@ -35,7 +35,6 @@ export const LoginPassword = ():JSX.Element => {
                 isClosable: true,
                 position: "top"
               })            
-              return
         } else if(!password) {
             toast({
                 title: "Validation Unsuccessful",
