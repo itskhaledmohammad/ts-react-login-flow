@@ -16,6 +16,7 @@ import LoginPassword from './login_password/LoginPassword';
 import OTPEmail from './otp_email/OTPEmail';
 import OTPSms from './otp_sms/OTPSms';
 import Signup from './signup/Signup';
+import LoadingPage from "./common/LoadingPage";
 
 export const App = ():JSX.Element => (
   <ChakraProvider theme={theme}>
@@ -23,7 +24,8 @@ export const App = ():JSX.Element => (
       <Router>
         <Switch>
           <Route exact path="/">
-            <Redirect to="/login"></Redirect>
+            {/* <Redirect to="/login"></Redirect> */}
+            <LoadingPage />
           </Route>
           <Route exact path="/login_with_password">
             <LoginPassword/>
