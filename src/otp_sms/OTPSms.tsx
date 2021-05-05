@@ -37,7 +37,7 @@ export const OTPSms: React.FC = ():JSX.Element => {
               return            
         }
         setLoading(true)
-        axiosInstance.post('/otp/sms', {otp: otp })
+        axiosInstance.post('/otp/sms',  JSON.stringify({otp}))
         .then((response:AxiosResponse) => {
             if(response.status === 200) {
                 toast({

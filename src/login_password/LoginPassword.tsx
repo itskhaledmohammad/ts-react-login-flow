@@ -56,7 +56,7 @@ export const LoginPassword: React.FC = ():JSX.Element => {
                 title: "Validation Unsuccessful",
                 description: "Phone number can't be empty",
                 status: "error",
-                duration: 1000,
+                duration: 3000,
                 isClosable: true,
                 position: "top"
               })  
@@ -66,7 +66,7 @@ export const LoginPassword: React.FC = ():JSX.Element => {
                 title: "Validation Unsuccessful",
                 description: "Password can't be empty",
                 status: "error",
-                duration: 1000,
+                duration: 3000,
                 isClosable: true,
                 position: "top"
               })  
@@ -74,7 +74,7 @@ export const LoginPassword: React.FC = ():JSX.Element => {
         }
 
         setLoading(true)
-        axiosInstance.post('/login', { phone, password })
+        axiosInstance.post('/login',  JSON.stringify({ phone, password }))
         .then((response:AxiosResponse) => {
             if(response.status === 200) {
                 toast({

@@ -21,7 +21,7 @@ const blackButtonStyle = {
 }
 export const OTPEmail: React.FC = ():JSX.Element => {
     const toast = useToast()
-    const [otp, setOTP] = useState<number>(0);
+    const [otp, setOTP] = useState<string>("");
     const setLoading = useContext(LoadingContext)
 
     const handleOTP = () => {
@@ -30,21 +30,21 @@ export const OTPEmail: React.FC = ():JSX.Element => {
                 title: "Validation Unsuccessful",
                 description: "Please enter a valid OTP",
                 status: "error",
-                duration: 1000,
+                duration: 3000,
                 isClosable: true,
                 position: "top"
               })        
               return    
         }
         setLoading(true);
-        axiosInstance.get('/otp/email')
+        axiosInstance.post('/otp/email', JSON.stringify({otp}))
         .then((response:AxiosResponse) => {
             if(response.status === 200) {
                 toast({
                     title: "Login Successful",
                     description: "Welcome the login was successful.",
                     status: "success",
-                    duration: 1000,
+                    duration: 3000,
                     isClosable: true,
                     position: "top"
                   })
@@ -66,7 +66,7 @@ export const OTPEmail: React.FC = ():JSX.Element => {
     return (
     <Flex direction="column" width="90%" justifyContent="cent   er" alignItems="center">
         <Text fontSize="4xl" align="center" width="100%"><Icon as={FaEnvelope} /> OTP has been sent to your <Text as="strong">EMAIL</Text></Text>
-        <Input variant="flushed" textAlign="center" fontSize="3xl" placeholder="Email OTP" {...commonStyle} marginTop="50px" onChange={(e) => setOTP(parseInt(e.target.value))} />
+        <Input variant="flushed" textAlign="center" fontSize="3xl" placeholder="Email OTP" {...commonStyle} marginTop="50px" onChange={(e) => setOTP(e.target.value)} />
         <Button {...commonStyle} size="lg" {...blackButtonStyle}  padding="30px 0" onClick={handleOTP}>
             <Text fontSize="2xl">Submit</Text>
         </Button>

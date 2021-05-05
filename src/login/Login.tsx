@@ -53,7 +53,7 @@ export const Login: React.FC = ():JSX.Element => {
                 title: "Validation Unsuccessful",
                 description: "Phone number can't be empty",
                 status: "error",
-                duration: 1000,
+                duration: 3000,
                 isClosable: true,
                 position: "top"
               })            
@@ -75,7 +75,7 @@ export const Login: React.FC = ():JSX.Element => {
                 title: "Unexpected Error",
                 description: "Sorry there was a network error.",
                 status: "error",
-                duration: 1000,
+                duration: 3000,
                 isClosable: true,
                 position: "top"
               })            

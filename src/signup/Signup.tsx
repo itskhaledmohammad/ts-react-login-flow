@@ -34,7 +34,7 @@ export const Signup: React.FC = ():JSX.Element => {
                 title: "Validation Unsuccessful",
                 description: "Phone Number can't be empty",
                 status: "error",
-                duration: 1000,
+                duration: 3000,
                 isClosable: true,
                 position: "top"
             })            
@@ -45,7 +45,7 @@ export const Signup: React.FC = ():JSX.Element => {
                 title: "Validation Unsuccessful",
                 description: "Name can't be empty",
                 status: "error",
-                duration: 1000,
+                duration: 3000,
                 isClosable: true,
                 position: "top"
               }) 
@@ -56,7 +56,7 @@ export const Signup: React.FC = ():JSX.Element => {
                 title: "Validation Unsuccessful",
                 description: "Password can't be empty",
                 status: "error",
-                duration: 1000,
+                duration: 3000,
                 isClosable: true,
                 position: "top"
               })  
