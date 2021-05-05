@@ -30,7 +30,7 @@ export const OTPSms: React.FC = ():JSX.Element => {
                 title: "Validation Unsuccessful",
                 description: "Please enter a valid OTP",
                 status: "error",
-                duration: 1000,
+                duration: 3000,
                 isClosable: true,
                 position: "top"
               })

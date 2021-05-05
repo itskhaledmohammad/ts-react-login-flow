@@ -56,7 +56,7 @@ export const OTPEmail: React.FC = ():JSX.Element => {
                 title: "Login Unsuccessful",
                 description: "OTP was Invalid.",
                 status: "error",
-                duration: 1000,
+                duration: 3000,
                 isClosable: true,
                 position: "top"
               })
