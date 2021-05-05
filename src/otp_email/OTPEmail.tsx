@@ -25,7 +25,7 @@ export const OTPEmail: React.FC = ():JSX.Element => {
     const setLoading = useContext(LoadingContext)
 
     const handleOTP = () => {
-        if(otp === 0 || !otp) {
+        if(otp === "0" || !otp) {
             toast({
                 title: "Validation Unsuccessful",
                 description: "Please enter a valid OTP",
