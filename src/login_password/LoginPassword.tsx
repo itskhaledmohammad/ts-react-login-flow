@@ -28,6 +28,28 @@ export const LoginPassword: React.FC = ():JSX.Element => {
     const handlePasswordShow = () => setShow(!show)
     const setLoading = useContext(LoadingContext)
 
+    const handleFacebook = ():void => {
+        toast({
+            title: "Login Successful",
+            description: "Welcome! Logged In with Facebook.",
+            status: "success",
+            duration: 2000,
+            isClosable: true,
+            position: "top"
+          })
+    }
+
+    const handleGoogle = ():void => {
+        toast({
+            title: "Login Successful",
+            description: "Welcome! Logged In with Google.",
+            status: "success",
+            duration: 2000,
+            isClosable: true,
+            position: "top"
+          })
+    }
+
     const handleSignIn = ():void => {
         if(!phone) {
             toast({
@@ -124,8 +146,8 @@ export const LoginPassword: React.FC = ():JSX.Element => {
         <Text>Or</Text>
     </Flex>
     <Flex {...commonStyle} justifyContent="center">
-        <Button colorScheme="facebook" borderRadius="0" leftIcon={<Icon as={FaFacebookF} />} {...commonStyle} marginRight="10px" padding="25px 0">Sign in with Facebook</Button>
-        <Button colorScheme="red" borderRadius="0" leftIcon={<Icon as={FaGoogle} />} {...commonStyle} padding="25px 0">Sign in with Google</Button>
+        <Button colorScheme="facebook" borderRadius="0" leftIcon={<Icon as={FaFacebookF} />} {...commonStyle} marginRight="10px" padding="25px 0" onClick={handleFacebook}>Sign in with Facebook</Button>
+        <Button colorScheme="red" borderRadius="0" leftIcon={<Icon as={FaGoogle} />} {...commonStyle} padding="25px 0" onClick={handleGoogle}>Sign in with Google</Button>
     </Flex>
     </Flex>
 )}
