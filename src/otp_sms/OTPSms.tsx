@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Flex, Text, Button, Icon, useToast, Input, Link} from "@chakra-ui/react";
 import { PhoneIcon } from '@chakra-ui/icons';
 import { FaArrowAltCircleLeft, FaEnvelope } from 'react-icons/fa';
 import {Link as RLink} from "react-router-dom";
 import axiosInstance from "../utils/axiosInstance"
 import { AxiosResponse } from 'axios';
-
+import { LoadingContext } from "../App"
 const commonStyle = {
     width: "100%",
     margin: "10px 0"
@@ -22,7 +22,8 @@ const blackButtonStyle = {
 export const OTPSms: React.FC = ():JSX.Element => {
     const toast = useToast()
     const [otp, setOTP] = useState<string>("");
-    
+    const setLoading = useContext(LoadingContext)
+
     const handleOTP = ():void => {
         if(otp === "0" || !otp) {
             toast({
@@ -35,6 +36,7 @@ export const OTPSms: React.FC = ():JSX.Element => {
               })
               return            
         }
+        setLoading(true)
         axiosInstance.post('/otp/sms', {otp: otp })
         .then((response:AxiosResponse) => {
             if(response.status === 200) {
@@ -42,22 +44,23 @@ export const OTPSms: React.FC = ():JSX.Element => {
                     title: "Login Successful",
                     description: "Welcome the login was successful.",
                     status: "success",
-                    duration: 1000,
+                    duration: 2000,
                     isClosable: true,
                     position: "top"
                   })
-                  return
             }
+            setLoading(false);
         })
         .catch(err => {
             toast({
                 title: "Login Unsuccessful",
                 description: "OTP was Invalid.",
                 status: "error",
-                duration: 1000,
+                duration: 2000,
                 isClosable: true,
                 position: "top"
               })
+              setLoading(false)
         })
     }
     return (
