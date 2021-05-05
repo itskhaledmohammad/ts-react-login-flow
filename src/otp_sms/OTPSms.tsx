@@ -21,10 +21,10 @@ const blackButtonStyle = {
 }
 export const OTPSms = ():JSX.Element => {
     const toast = useToast()
-    const [otp, setOTP] = useState<number>(0);
+    const [otp, setOTP] = useState<string>("");
     
     const handleOTP = ():void => {
-        if(otp === 0 || !otp) {
+        if(otp === "0" || !otp) {
             toast({
                 title: "Validation Unsuccessful",
                 description: "Please enter a valid OTP",
@@ -35,7 +35,7 @@ export const OTPSms = ():JSX.Element => {
               })
               return            
         }
-        axiosInstance.get('/otp/sms')
+        axiosInstance.post('/otp/sms', {otp: otp })
         .then((response:AxiosResponse) => {
             if(response.status === 200) {
                 toast({
@@ -63,7 +63,7 @@ export const OTPSms = ():JSX.Element => {
     return (
     <Flex direction="column" width="100%" padding="50px" justifyContent="center" alignItems="center">
         <Text fontSize="4xl" align="center" width="100%"><PhoneIcon /> OTP has been sent to your <Text as="strong">PHONE</Text></Text>
-        <Input variant="flushed" textAlign="center" fontSize="3xl" placeholder="SMS OTP" {...commonStyle} marginTop="50px" onChange={(e) => setOTP(parseInt(e.target.value))} />
+        <Input variant="flushed" textAlign="center" fontSize="3xl" placeholder="SMS OTP" {...commonStyle} marginTop="50px" onChange={(e) => setOTP(e.target.value)} />
         <Button {...commonStyle} size="lg" {...blackButtonStyle}  padding="30px 0" onClick={handleOTP}>
             <Text fontSize="2xl">Submit</Text>
         </Button>
