@@ -3,6 +3,8 @@ import { Flex, Text, Button, Icon, useToast, Input, Link} from "@chakra-ui/react
 import { PhoneIcon } from '@chakra-ui/icons';
 import { FaArrowAltCircleLeft, FaEnvelope } from 'react-icons/fa';
 import {Link as RLink} from "react-router-dom";
+import axiosInstance from "../utils/axiosInstance"
+import { AxiosResponse } from 'axios';
 
 const commonStyle = {
     width: "100%",
@@ -21,7 +23,7 @@ export const OTPSms = ():JSX.Element => {
     const toast = useToast()
     const [otp, setOTP] = useState<number>(0);
     
-    const handleOTP = () => {
+    const handleOTP = ():void => {
         if(otp === 0 || !otp) {
             toast({
                 title: "Validation Unsuccessful",
@@ -30,8 +32,33 @@ export const OTPSms = ():JSX.Element => {
                 duration: 1000,
                 isClosable: true,
                 position: "top"
-              })            
+              })
+              return            
         }
+        axiosInstance.get('/otp/sms')
+        .then((response:AxiosResponse) => {
+            if(response.status === 200) {
+                toast({
+                    title: "Login Successful",
+                    description: "Welcome the login was successful.",
+                    status: "success",
+                    duration: 1000,
+                    isClosable: true,
+                    position: "top"
+                  })
+                  return
+            }
+        })
+        .catch(err => {
+            toast({
+                title: "Login Unsuccessful",
+                description: "OTP was Invalid.",
+                status: "error",
+                duration: 1000,
+                isClosable: true,
+                position: "top"
+              })
+        })
     }
     return (
     <Flex direction="column" width="100%" padding="50px" justifyContent="center" alignItems="center">

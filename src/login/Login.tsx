@@ -4,7 +4,6 @@ import { PhoneIcon } from '@chakra-ui/icons'
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import {Link as RLink, useHistory} from "react-router-dom";
 import axiosInstance from "../utils/axiosInstance"
-import { AxiosResponse } from 'axios';
 
 const commonStyle = {
     width: "100%",

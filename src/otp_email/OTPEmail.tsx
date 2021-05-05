@@ -30,8 +30,33 @@ export const OTPEmail = ():JSX.Element => {
                 duration: 1000,
                 isClosable: true,
                 position: "top"
-              })            
+              })        
+              return    
         }
+        axiosInstance.get('/otp/email')
+        .then((response:AxiosResponse) => {
+            if(response.status === 200) {
+                toast({
+                    title: "Login Successful",
+                    description: "Welcome the login was successful.",
+                    status: "success",
+                    duration: 1000,
+                    isClosable: true,
+                    position: "top"
+                  })
+                  return
+            }
+        })
+        .catch(err => {
+            toast({
+                title: "Login Unsuccessful",
+                description: "OTP was Invalid.",
+                status: "error",
+                duration: 1000,
+                isClosable: true,
+                position: "top"
+              })
+        })
     }
     return (
     <Flex direction="column" width="100%" padding="50px" justifyContent="cent   er" alignItems="center">
