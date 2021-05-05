@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Flex, Text, Button, Icon, useToast, Input, Link} from "@chakra-ui/react";
 import { PhoneIcon } from '@chakra-ui/icons';
 import { FaArrowAltCircleLeft, FaEnvelope } from 'react-icons/fa';
-import {Link as RLink, useHistory} from "react-router-dom";
+import {Link as RLink} from "react-router-dom";
 
 const commonStyle = {
     width: "100%",
@@ -18,7 +18,6 @@ const blackButtonStyle = {
     }
 }
 export const OTPSms = ():JSX.Element => {
-    const history = useHistory()
     const toast = useToast()
     const [otp, setOTP] = useState<number>(0);
     
