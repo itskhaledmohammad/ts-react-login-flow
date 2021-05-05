@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { useState } from "react"
 import {
   ChakraProvider,
   Flex,
@@ -16,11 +16,21 @@ import LoginPassword from './login_password/LoginPassword';
 import OTPEmail from './otp_email/OTPEmail';
 import OTPSms from './otp_sms/OTPSms';
 import Signup from './signup/Signup';
+import LoadingPage from "./common/LoadingPage";
+type EmptyFunction = () => void
 
-export const App = ():JSX.Element => (
+export const LoadingContext = React.createContext<React.Dispatch<React.SetStateAction<boolean>> | EmptyFunction>(() =>{});
+
+export const App: React.FC = ():JSX.Element => {
+  const [loading, setLoading] = useState<boolean>(false);
+  return (
   <ChakraProvider theme={theme}>
+    <LoadingContext.Provider value={setLoading}>
     <Flex width="100vw" height="100vh" direction="column" justifyContent="center" alignItems="center">
-      <Router>
+      {(loading) ? 
+      <LoadingPage />
+      :
+      (<Router>
         <Switch>
           <Route exact path="/">
             <Redirect to="/login"></Redirect>
@@ -42,7 +52,10 @@ export const App = ():JSX.Element => (
           </Route>
 
         </Switch>
-      </Router>
+      </Router>)
+    }
     </Flex>
+    </LoadingContext.Provider>
   </ChakraProvider>
 )
+}
