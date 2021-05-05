@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Flex, Text, Input, Button, InputGroup, InputLeftElement, Icon, Link, useToast} from "@chakra-ui/react"
 import { PhoneIcon } from '@chakra-ui/icons'
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import {Link as RLink, useHistory} from "react-router-dom";
+import { LoadingContext } from "../App"
 import axiosInstance from "../utils/axiosInstance"
 
 const commonStyle = {
@@ -21,6 +22,7 @@ const blackButtonStyle = {
 export const Login: React.FC = ():JSX.Element => {
     const history = useHistory()
     const toast = useToast()
+    const setLoading = useContext(LoadingContext)
     const [phone, setPhone] = useState<string>("");
 
     const handleSignIn = ():void => {
@@ -36,6 +38,7 @@ export const Login: React.FC = ():JSX.Element => {
               return
         }
 
+        setLoading(true);
         axiosInstance.get('/otp')
         .then(({data}) => {
             if(data.otp_medium_sms === 'true') {
@@ -43,6 +46,7 @@ export const Login: React.FC = ():JSX.Element => {
             } else {
                 history.push('/otp/email')
             }
+            setLoading(false);
         })
         .catch(err => {
             toast({
@@ -53,8 +57,9 @@ export const Login: React.FC = ():JSX.Element => {
                 isClosable: true,
                 position: "top"
               })            
+              setLoading(false);
         })
-                
+        
     }
     
     return (

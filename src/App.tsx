@@ -17,14 +17,15 @@ import OTPEmail from './otp_email/OTPEmail';
 import OTPSms from './otp_sms/OTPSms';
 import Signup from './signup/Signup';
 import LoadingPage from "./common/LoadingPage";
+type EmptyFunction = () => void
 
-export const LoadingContext = React.createContext<(boolean | React.Dispatch<React.SetStateAction<boolean>>)[] | null>(null);
+export const LoadingContext = React.createContext<React.Dispatch<React.SetStateAction<boolean>> | EmptyFunction>(() =>{});
 
 export const App: React.FC = ():JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false);
   return (
   <ChakraProvider theme={theme}>
-    <LoadingContext.Provider value={[loading, setLoading]}>
+    <LoadingContext.Provider value={setLoading}>
     <Flex width="100vw" height="100vh" direction="column" justifyContent="center" alignItems="center">
       {(loading) ? 
       <LoadingPage />
