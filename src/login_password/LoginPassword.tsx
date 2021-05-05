@@ -6,20 +6,8 @@ import {Link as RLink} from "react-router-dom"
 import { LoadingContext } from "../App"
 import axiosInstance from "../utils/axiosInstance"
 import { AxiosResponse } from 'axios';
+import {commonStyle, blackButtonStyle} from "../common/commonStyles";
 
-const commonStyle = {
-    width: "100%",
-    margin: "10px 0"
-}
-const blackButtonStyle = {
-    backgroundColor: "black",
-    color: "white",
-    borderRadius: "0",
-    _hover: {
-        backgroundColor: "gray.900"
-        
-    }
-}
 export const LoginPassword: React.FC = ():JSX.Element => {
     const toast = useToast()
     const [phone, setPhone] = useState<string>("");

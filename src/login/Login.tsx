@@ -5,20 +5,8 @@ import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import {Link as RLink, useHistory} from "react-router-dom";
 import { LoadingContext } from "../App"
 import axiosInstance from "../utils/axiosInstance"
+import {commonStyle, blackButtonStyle} from "../common/commonStyles";
 
-const commonStyle = {
-    width: "100%",
-    margin: "10px 0"
-}
-const blackButtonStyle = {
-    backgroundColor: "black",
-    color: "white",
-    borderRadius: "0",
-    _hover: {
-        backgroundColor: "gray.900"
-        
-    }
-}
 export const Login: React.FC = ():JSX.Element => {
     const history = useHistory()
     const toast = useToast()

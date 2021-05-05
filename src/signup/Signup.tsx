@@ -4,20 +4,8 @@ import { PhoneIcon } from '@chakra-ui/icons';
 import {Link as RLink} from "react-router-dom";
 import { FaEye, FaEyeSlash, FaKey, FaUserAlt, FaEnvelope, FaArrowAltCircleLeft } from 'react-icons/fa';
 import { LoadingContext } from "../App"
+import {commonStyle, blackButtonStyle} from "../common/commonStyles";
 
-const commonStyle = {
-    width: "100%",
-    margin: "10px 0"
-}
-const blackButtonStyle = {
-    backgroundColor: "black",
-    color: "white",
-    borderRadius: "0",
-    _hover: {
-        backgroundColor: "gray.900"
-        
-    }
-}
 export const Signup: React.FC = ():JSX.Element => {
     const toast = useToast()
     const [phone, setPhone] = useState<string>("");

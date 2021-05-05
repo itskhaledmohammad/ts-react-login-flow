@@ -6,19 +6,8 @@ import {Link as RLink} from "react-router-dom";
 import axiosInstance from "../utils/axiosInstance"
 import { AxiosResponse } from 'axios';
 import { LoadingContext } from "../App"
-const commonStyle = {
-    width: "100%",
-    margin: "10px 0"
-}
-const blackButtonStyle = {
-    backgroundColor: "black",
-    color: "white",
-    borderRadius: "0",
-    _hover: {
-        backgroundColor: "gray.900"
-        
-    }
-}
+import {commonStyle, blackButtonStyle} from "../common/commonStyles";
+
 export const OTPEmail: React.FC = ():JSX.Element => {
     const toast = useToast()
     const [otp, setOTP] = useState<string>("");
